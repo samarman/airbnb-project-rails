@@ -1,5 +1,8 @@
-<h1>Planets#show</h1>
-<p>Find me in app/views/planets/show.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80);">
+  <div class="container d-flex justify-content-center">
+    <h1 class="fs-1 font-monospace"><%= @planet.name %></h1>
+  </div>
+</div>
 <div class="container margin-top-negative">
     <div class="row">
       <div class="col-8">
@@ -37,6 +40,6 @@
       </div>
     </div >
     <div>
-      <p class="btn btn-dark mt-5"><%= link_to "Back to planets_index", planets_index_path, class: "text-white fs-5"%></p>
+      <p class="btn btn-dark mt-5"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
     </div>
 </div>

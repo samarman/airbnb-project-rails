@@ -1,5 +1,8 @@
-<h1>Planets#index</h1>
-<p>Find me in app/views/planets/index.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80);">
+  <div class="container d-flex justify-content-center">
+    <h1 class="fs-1 font-monospace">Rent the perfect planet!</h1>
+  </div>
+</div>
 <div class="container mt-4">
   <div class="container">
     <div class="row">
@@ -26,7 +29,7 @@
                     <span><%= planet.price_per_night %> per night</span>
                   </div>
                   <div class="d-inline-flex">
-                    <h6><%= link_to "More Info", planet_show_path(planet), class: "btn btn-dark text-light mt-3 p-2 ms-1" %></h6>
+                    <h6><%= link_to "More Info", planet_path(planet), class: "btn btn-dark text-light mt-3 p-2 ms-1" %></h6>
                   </div>
                 </div>
               </div>
