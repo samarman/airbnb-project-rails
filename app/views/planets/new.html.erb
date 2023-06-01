@@ -1,2 +1,41 @@
-<h1>Planets#new</h1>
-<p>Find me in app/views/planets/new.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80);">
+  <div class="container d-flex justify-content-center">
+    <h1 class="fs-1 font-monospace">New Planet</h1>
+  </div>
+</div>
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8">
+      <div class="m-3">
+        <div class="row bg-light mt-3 p-3 position-relative">
+          <h1>New Planet Form</h1>
+        </div>
+        <div class="row bg-light mt-3 p-3">
+          <%= render 'form', planet: @planet %>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="bg-light m-3">
+        <div class="p-3">
+          <h2>Book This Planet!</h2>
+          <span>Date from</span>
+          <form action="">
+            <input type="text" class="form-control" placeholder="12/10/2017" aria-label="start-date" aria-describedby="start-date-label">
+            <span>Date to</span>
+            <input type="text" class="form-control" placeholder="18/10/2017" aria-label="start-date" aria-describedby="start-date-label">
+            <input type="submit" value="Book" class="btn btn-dark text-light mt-2" style="width: 100%">
+          </form>
+        </div>
+        <div class="p-3">
+          <h2>Details:</h2>
+          <h3 class="fs-6">People</h3>
+          <h3 class="fs-6">£ per night</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="btn btn-dark mt-5"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
+  </div>
+</div>
