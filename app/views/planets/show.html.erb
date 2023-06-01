@@ -1,0 +1,42 @@
+<h1>Planets#show</h1>
+<p>Find me in app/views/planets/show.html.erb</p>
+<div class="container margin-top-negative">
+    <div class="row">
+      <div class="col-8">
+        <div class="m-3">
+          <div class="row bg-light mt-3 p-3 position-relative">
+            <h1><%= @planet.name %></h1>
+            <h3><%= @planet.address %></h3>
+          </div>
+          <div class="row bg-light mt-3 p-3">
+            <h2>A little bit more about this planet</h2>
+            <h5><%= @planet.description %></h5>
+            <img id="map" src=''>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="bg-light m-3">
+          <div class="p-3">
+            <h2>Book This Planet!</h2>
+            <span>Date from</span>
+
+            <form action>
+              <input type="text" class="form-control" placeholder="12/10/2017" aria-label="start-date" aria-describedby="start-date-label">
+              <span>Date to</span>
+              <input type="text" class="form-control" placeholder="18/10/2017" aria-label="start-date" aria-describedby="start-date-label">
+              <input type="submit" value="Book" class="btn btn-dark text-light mt-2" style="width: 100%">
+            </form>
+          </div>
+          <div class="p-3">
+            <h2>Details:</h2>
+            <h3 class="fs-6"><%= @planet.number_of_guests %> People</h3>
+            <h3 class="fs-6">£<%= @planet.price_per_night %> per night</h3>
+          </div>
+        </div>
+      </div>
+    </div >
+    <div>
+      <p class="btn btn-dark mt-5"><%= link_to "Back to planets_index", planets_index_path, class: "text-white fs-5"%></p>
+    </div>
+</div>
