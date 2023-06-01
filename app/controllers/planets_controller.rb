@@ -8,7 +8,7 @@ class PlanetsController < ApplicationController
   end
 
   def new
-    @planet.user = current_user
+    @planet = Planet.new
   end
 
   def create
@@ -28,10 +28,6 @@ class PlanetsController < ApplicationController
   end
 
   def set_planet
-<<<<<<< HEAD
     @planet = Planet.find(params[:id])
-=======
-    @planet = planet.find(params[:id])
->>>>>>> 68816193ee36e01088ae54e2be038787282397cf
   end
 end
