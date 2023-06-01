@@ -8,7 +8,7 @@ class PlanetsController < ApplicationController
   end
 
   def new
-    @planet.user = current_user
+    @planet = Planet.new
   end
 
   def create
