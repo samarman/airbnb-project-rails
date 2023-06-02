@@ -15,9 +15,9 @@ class PlanetsController < ApplicationController
     @planet = Planet.new(planet_params)
     @planet.user = current_user
     if @planet.save
-      redirect_to planets_show_path(@planet)
+      redirect_to planet_path(@planet)
     else
-      render planets_new_path, status: :unprocessable_entity
+      render new_planet_path, status: :unprocessable_entity
     end
   end
 
