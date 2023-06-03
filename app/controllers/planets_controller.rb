@@ -5,6 +5,7 @@ class PlanetsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
 
   def new
