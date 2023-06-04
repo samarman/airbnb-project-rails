@@ -14,7 +14,7 @@
           <div class="row bg-light mt-3 p-3">
             <h2>A little bit more about this planet</h2>
             <h5><%= @planet.description %></h5>
-            <img id="map" src=''>
+            <img id="map" src="<%= cl_image_path(@planet.photo.key) %>">
           </div>
         </div>
       </div>
