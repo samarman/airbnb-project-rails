@@ -1,0 +1,33 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80);">
+  <div class="container d-flex justify-content-center">
+    <h1 class="fs-1 font-monospace">My Bookings</h1>
+  </div>
+</div>
+<div class="container mt-5">
+  <% @bookings.each do |booking| %>
+    <div class="card ms-5 mb-4" style="max-width: 970px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" class="img-fluid rounded-start" alt="...">
+        </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <h2> <%= booking.planet.name %>  </h2>
+            </div>
+            <div class="col">
+              <p> Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            </div>
+            <div class="col">
+              <p><%= booking.start_date.strftime("%d %B, %Y") %> -
+              <%= booking.end_date.strftime("%d %B, %Y") %></p>
+            </div>
+          </div>
+          <p class="card-text mt-2"> <%= booking.planet.description %></p>
+        </div>
+      </div>
+    </div>
+</div>
+  <% end %>
+</div>

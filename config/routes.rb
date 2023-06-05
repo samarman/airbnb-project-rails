@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :planets, only: [:index, :show, :new, :create] do
     resources :bookings, only: [:new, :create]
   end
+  resources :bookings, only: [:index]
 end
