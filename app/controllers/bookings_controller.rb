@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_planet, only: [:create]
 
   def index
+    @bookings = policy_scope(Booking)
     @bookings = Booking.all
   end
 
