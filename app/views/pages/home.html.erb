@@ -1,12 +1,22 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80)">
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80)">
   <div class="container d-flex justify-content-center">
     <h1 class="fs-1 font-monospace">Rent the perfect planet!</h1>
   </div>
 </div>
 <div class="container">
   <div class="d-flex p-5 justify-content-center">
-    <div>
-      <%= link_to "See all planets", planets_path, class: "btn btn-dark fs-2 text-light mt-3 p-3 ms-1" %>
+    <div> %>
+      <%# <%= link_to "See all planets", planets_path, class: "btn btn-dark fs-2 text-light mt-3 p-3 ms-1" %>
+    <%# </div>
+  </div>
+</div> %>
+<div class="bg-image d-flex justify-content-center align-items-center flex-direction-column"
+    style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1675&q=80');
+            height: 100vh">
+  <div>
+    <h1 class="font-monospace text-light">Rent the perfect planet!</h1>
+    <div class="d-flex justify-content-center">
+      <p><%= link_to "See all planets", planets_path, class: "ms-1 p-3 text-decoration-none fs-3 text-light btn btn-dark mt-5" %></p>
     </div>
   </div>
 </div>

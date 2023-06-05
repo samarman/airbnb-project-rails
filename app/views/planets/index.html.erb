@@ -1,6 +1,6 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80)">
   <div class="container d-flex justify-content-center">
-    <h1 class="fs-1 font-monospace">Rent the perfect planet!</h1>
+    <h1 class="font-monospace text-light">Rent the perfect planet!</h1>
   </div>
 </div>
 <div class="container mt-4">
@@ -23,7 +23,7 @@
                         <% end %>>
               <div class="card-trip-infos">
                 <div>
-                  <h2><%= link_to(planet.name, planet_path(planet))%></h2>
+                  <h2><%= link_to(planet.name, planet_path(planet), class: "text-dark")%></h2>
                   <p class="mt-2 p-1"><%= planet.address %></p>
                   <div class="flex align-items-center">
                     <i class="fa-solid fa-people-line"></i>
