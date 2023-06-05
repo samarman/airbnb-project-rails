@@ -8,7 +8,11 @@
     <div class="card ms-5 mb-4" style="max-width: 970px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" class="img-fluid rounded-start" alt="...">
+          <img src=<% if booking.planet.photo.key.nil? %>
+                                <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                              <% else %>
+                                <%= cl_image_path booking.planet.photo.key %>
+                              <% end %> class="img-fluid rounded-start" alt="...">
         </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -30,4 +34,7 @@
     </div>
 </div>
   <% end %>
+  <div>
+    <p class="btn btn-dark mt-5"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
+  </div>
 </div>

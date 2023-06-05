@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("huv4v6giue1vmj2guti9", quality: 100) %>)">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80)">
   <div class="container d-flex justify-content-center">
     <h1 class="fs-1 font-monospace">Rent the perfect planet!</h1>
   </div>
@@ -15,7 +15,12 @@
         <% @planets.each do |planet| %>
           <div class="col-md-3">
             <div class="card-trip mb-4">
-              <img src="<%= cl_image_path(planet.photo.key) %>">
+
+              <img src=<% if planet.photo.key.nil? %>
+                         <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                        <% else %>
+                          <%= cl_image_path planet.photo.key %>
+                        <% end %>>
               <div class="card-trip-infos">
                 <div>
                   <h2><%= link_to(planet.name, planet_path(planet))%></h2>
