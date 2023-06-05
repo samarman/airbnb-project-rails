@@ -20,6 +20,8 @@ class BookingsController < ApplicationController
     redirect_to planet_path(@planet)
   end
 
+  private
+
   def set_planet
     @planet = Planet.find(params[:planet_id])
   end
