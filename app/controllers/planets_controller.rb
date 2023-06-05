@@ -29,7 +29,7 @@ class PlanetsController < ApplicationController
   private
 
   def planet_params
-    params.require(:planet).permit(:name, :address, :description, :price_per_night, :number_of_guests)
+    params.require(:planet).permit(:name, :address, :description, :price_per_night, :number_of_guests, :photo)
   end
 
   def set_planet
