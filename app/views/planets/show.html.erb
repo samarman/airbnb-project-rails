@@ -14,7 +14,11 @@
           <div class="row bg-light mt-3 p-3">
             <h2>A little bit more about this planet</h2>
             <h5><%= @planet.description %></h5>
-            <img id="map" src="<%= cl_image_path(@planet.photo.key) %>">
+            <img id="map" src=<% if @planet.photo.key.nil? %>
+                                <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                              <% else %>
+                                <%= cl_image_path @planet.photo.key %>
+                              <% end %>>
           </div>
         </div>
       </div>
