@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @booking.planet = @planet
     authorize @booking
     @booking.save
-    redirect_to planet_path(@planet)
+    redirect_to bookings_path
   end
 
   private
