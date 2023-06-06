@@ -1,6 +1,6 @@
-# Planet Rental App
+# AirPnP
 
-Welcome to the Planet Rental App! This Rails application is a clone of Airbnb, but with a unique twist: it allows users to rent planets. Whether you're an intergalactic traveler or a space enthusiast, this app provides a platform to explore and book your dream planet.
+Welcome to AirPnP; the Planet Rental App! This Rails application is a clone of Airbnb, but with a unique twist: it allows users to rent planets. Whether you're an intergalactic traveler or a space enthusiast, this app provides a platform to explore and book your dream planet.
 
 ## Table of Contents
 
@@ -124,9 +124,3 @@ We welcome contributions to improve the Planet Rental App. To contribute, follow
 5. Submit a pull request
 
 Please ensure your code adheres to our coding conventions and is accompanied by relevant tests.
-
-## License
-
-The Planet Rental App is open source and released under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
-
-We hope you enjoy using the Planet Rental App! If you have any questions or feedback, please don't hesitate to contact us.
