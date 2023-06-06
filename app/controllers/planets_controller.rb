@@ -2,7 +2,7 @@ class PlanetsController < ApplicationController
   before_action :set_planet, only: %i[show]
   def index
     @planets = policy_scope(Planet)
-    # @planets = Planet.all
+    @planets = Planet.all
   end
 
   def show
