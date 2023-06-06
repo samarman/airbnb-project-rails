@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+// Rails app clone of Airbnb for renting... Planets!
+
+See live version of this webapp on [Heroku](https://airpnp-of-planets.herokuapp.com/planets/new) 
