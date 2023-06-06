@@ -9,12 +9,12 @@
         <div class="m-3">
           <div class="row bg-light mt-3 p-3 position-relative">
             <h1><%= @planet.name %></h1>
-            <h3><%= @planet.address %></h3>
+            <h4><%= @planet.address %></h4>
           </div>
           <div class="row bg-light mt-3 p-3">
-            <h2>A little bit more about this planet</h2>
-            <h5><%= @planet.description %></h5>
-            <img id="map" src=<% if @planet.photo.key.nil? %>
+            <h2>A little bit more about this planet:</h2>
+            <h5 class="mt-3"><%= @planet.description %></h5>
+            <img id="map" class="mt-5" src=<% if @planet.photo.key.nil? %>
                                 <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
                               <% else %>
                                 <%= cl_image_path @planet.photo.key %>
@@ -31,7 +31,7 @@
       <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
         <%= f.input :start_date, placeholder: "Start Date" %>
         <%= f.input :end_date, placeholder: "End Date" %>
-        <%= f.submit "Book Now", class: "btn btn-primary" %>
+        <%= f.submit "Book Now", class: "btn btn-dark" %>
       <% end %>
           </div>
           <div class="p-3">
@@ -43,6 +43,6 @@
       </div>
     </div >
     <div>
-      <p class="btn btn-dark mt-5"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
+      <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
     </div>
 </div>
