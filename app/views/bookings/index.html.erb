@@ -7,14 +7,14 @@
   <% @bookings.each do |booking| %>
     <div class="card ms-5 mb-4" style="max-width: 970px;">
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-3">
           <img src=<% if booking.planet.photo.key.nil? %>
                                 <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
                               <% else %>
                                 <%= cl_image_path booking.planet.photo.key %>
                               <% end %> class="img-fluid rounded-start" alt="...">
         </div>
-      <div class="col-md-8">
+      <div class="col-md-8 col-lg-9">
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col">
@@ -26,9 +26,17 @@
             <div class="col">
               <p><%= booking.start_date.strftime("%d %B, %Y") %> -
               <%= booking.end_date.strftime("%d %B, %Y") %></p>
+               <% @bookings.each do |booking| %>
+              <p>Total Price: <%= booking.total_price %></p>
+            <% end %>
             </div>
           </div>
           <p class="card-text mt-2"> <%= booking.planet.description %></p>
+            <% @bookings.each do |booking| %>
+            <% end %>
+          <div class = "position-absolute bottom-0 end-0 btn btn-danger", style = "background-color: #cccccc; color: #333333 !important;">
+            <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+          </div>
         </div>
       </div>
     </div>

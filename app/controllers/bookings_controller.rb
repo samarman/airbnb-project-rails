@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = policy_scope(Booking)
-    # @bookings = Booking.all
+    @bookings = Booking.all
   end
 
   def new
@@ -18,6 +18,14 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.save
     redirect_to bookings_path
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    authorize @booking, :destroy?
+    @booking.destroy
+
+    redirect_to bookings_path, status: :see_other
   end
 
   private
