@@ -34,7 +34,7 @@
                     <span><%= planet.price_per_night %> per night</span>
                   </div>
                   <div class="d-inline-flex">
-                    <h6><%= link_to "More Info", planet_path(planet), class: "btn btn-dark text-light mt-3 p-2 ms-1" %></h6>
+                    <h6><%= link_to "More Info", planet_path(planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
           </div>
         <% end %>
       </div>
-      <%= link_to "List new planet", new_planet_path, class: "btn btn-dark text-light mt-0 ms-1" %>
+      <p><%= link_to "List new planet", new_planet_path, class: "btn btn-dark text-light mt-0 ms-1 rounded-pill" %></p>
     </div >
   </div>
 </div>
