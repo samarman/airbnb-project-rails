@@ -26,9 +26,9 @@
             <div class="col">
               <p><%= booking.start_date.strftime("%d %B, %Y") %> -
               <%= booking.end_date.strftime("%d %B, %Y") %></p>
-               <% @bookings.each do |booking| %>
+
               <p>Total Price: <%= booking.total_price %></p>
-            <% end %>
+
             </div>
           </div>
           <p class="card-text mt-2"> <%= booking.planet.description %></p>
