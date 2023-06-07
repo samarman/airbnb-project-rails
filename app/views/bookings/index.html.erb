@@ -30,7 +30,10 @@
               </div>
             </div>
             <p class="card-text mt-2"><%= next_booking.planet.description %></p>
-            <p>Total Price: <%= next_booking.total_price %></p>
+            <p>Total Price: £<%= next_booking.total_price %></p>
+          </div>
+          <div>
+            <p class="btn btn-dark position-absolute bottom-0 end-0"><%= link_to "Delete", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-white fs-5"%></p>
           </div>
         </div>
       </div>
@@ -64,8 +67,11 @@
                 </div>
               </div>
               <p class="card-text mt-2"><%= booking.planet.description %></p>
-              <p>Total Price: <%= booking.total_price %></p>
+              <p>Total Price: £<%= booking.total_price %></p>
             </div>
+            <div>
+            <p class="btn btn-dark position-absolute bottom-0 end-0"><%= link_to "Delete", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-white fs-5"%></p>
+          </div>
           </div>
         </div>
       </div>
@@ -99,8 +105,11 @@
                 </div>
               </div>
               <p class="card-text mt-2"><%= booking.planet.description %></p>
-              <p>Total Price: <%= booking.total_price %></p>
+              <p>Total Price: £<%= booking.total_price %></p>
             </div>
+            <div>
+            <p class="btn btn-dark position-absolute bottom-0 end-0"><%= link_to "Delete", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-white fs-5"%></p>
+          </div>
           </div>
         </div>
       </div>
