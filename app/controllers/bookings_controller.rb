@@ -29,6 +29,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def my_bookings
+    @bookings = current_user.bookings
+    @next_booking = @bookings.select { |booking| booking.start_date >= Date.today }.sort_by(&:start_date).first
+    @other_bookings = @bookings.select { |booking| booking.start_date > Date.today }.sort_by(&:start_date)
+    @previous_bookings = @bookings.select { |booking| booking.end_date < Date.today }.sort_by(&:end_date)
+
+    render 'my_bookings'
+  end
+
   private
 
   def set_planet
