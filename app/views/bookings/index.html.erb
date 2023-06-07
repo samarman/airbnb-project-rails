@@ -4,43 +4,109 @@
   </div>
 </div>
 <div class="container mt-5">
-  <% @bookings.each do |booking| %>
+  <% next_booking = @bookings.sort_by(&:start_date).first %>
+  <% if next_booking %>
+    <h2>Your next journey goes to <%= next_booking.planet.name %></h2>
     <div class="card ms-5 mb-4" style="max-width: 970px;">
       <div class="row g-0">
-        <div class="col-md-4 col-lg-3">
-          <img src=<% if booking.planet.photo.key.nil? %>
+        <div class="col-md-4">
+          <img src=<% if next_booking.planet.photo.key.nil? %>
                                 <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
                               <% else %>
-                                <%= cl_image_path booking.planet.photo.key %>
+                                <%= cl_image_path next_booking.planet.photo.key %>
                               <% end %> class="img-fluid rounded-start" alt="...">
         </div>
-      <div class="col-md-8 col-lg-9">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-              <h2> <%= booking.planet.name %>  </h2>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+                <h2><%= next_booking.planet.name %></h2>
+              </div>
+              <div class="col">
+                <p>Booked by: <%= next_booking.user.first_name %> <%= next_booking.user.last_name %></p>
+              </div>
+              <div class="col">
+                <p><%= next_booking.start_date.strftime("%d %B, %Y") %> - <%= next_booking.end_date.strftime("%d %B, %Y") %></p>
+              </div>
             </div>
-            <div class="col">
-              <p><%= booking.start_date.strftime("%d %B, %Y") %> -
-              <%= booking.end_date.strftime("%d %B, %Y") %></p>
-            </div>
-            <div class="col">
-              <p>Total Price: <%= booking.total_price %></p>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              <p class="card-text mt-2"> <%= booking.planet.description %></p>
-            </div>
-            <div class="col">
-              <p class="btn btn-dark position-absolute bottom-0 end-0"><%= link_to "Delete", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-white fs-5"%></p>
-            </div>
+            <p class="card-text mt-2"><%= next_booking.planet.description %></p>
+            <p>Total Price: <%= next_booking.total_price %></p>
           </div>
         </div>
       </div>
     </div>
-</div>
   <% end %>
+
+  <% other_bookings = @bookings.sort_by(&:start_date) - [next_booking] %>
+  <% if other_bookings.any? %>
+    <h2>Your other bookings</h2>
+    <% other_bookings.each do |booking| %>
+      <div class="card ms-5 mb-4" style="max-width: 970px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src=<% if booking.planet.photo.key.nil? %>
+                                  <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                                <% else %>
+                                  <%= cl_image_path booking.planet.photo.key %>
+                                <% end %> class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2><%= booking.planet.name %></h2>
+                </div>
+                <div class="col">
+                  <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+                </div>
+                <div class="col">
+                  <p><%= booking.start_date.strftime("%d %B, %Y") %> - <%= booking.end_date.strftime("%d %B, %Y") %></p>
+                </div>
+              </div>
+              <p class="card-text mt-2"><%= booking.planet.description %></p>
+              <p>Total Price: <%= booking.total_price %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% previous_bookings = @bookings.select { |booking| booking.end_date < Date.today }.sort_by(&:end_date) %>
+  <% if previous_bookings.any? %>
+    <h2>Previous bookings</h2>
+    <% previous_bookings.each do |booking| %>
+      <div class="card ms-5 mb-4" style="max-width: 970px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src=<% if booking.planet.photo.key.nil? %>
+                                  <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                                <% else %>
+                                  <%= cl_image_path booking.planet.photo.key %>
+                                <% end %> class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2><%= booking.planet.name %></h2>
+                </div>
+                <div class="col">
+                  <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+                </div>
+                <div class="col">
+                  <p><%= booking.start_date.strftime("%d %B, %Y") %> - <%= booking.end_date.strftime("%d %B, %Y") %></p>
+                </div>
+              </div>
+              <p class="card-text mt-2"><%= booking.planet.description %></p>
+              <p>Total Price: <%= booking.total_price %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
   <div>
     <p class="btn btn-dark mt-3 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
   </div>
