@@ -21,21 +21,20 @@
               <h2> <%= booking.planet.name %>  </h2>
             </div>
             <div class="col">
-              <p> Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-            </div>
-            <div class="col">
               <p><%= booking.start_date.strftime("%d %B, %Y") %> -
               <%= booking.end_date.strftime("%d %B, %Y") %></p>
-               <% @bookings.each do |booking| %>
+            </div>
+            <div class="col">
               <p>Total Price: <%= booking.total_price %></p>
-            <% end %>
             </div>
           </div>
-          <p class="card-text mt-2"> <%= booking.planet.description %></p>
-            <% @bookings.each do |booking| %>
-            <% end %>
-          <div class = "position-absolute bottom-0 end-0 btn btn-danger", style = "background-color: #cccccc; color: #333333 !important;">
-            <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+          <div class="row align-items-center">
+            <div class="col">
+              <p class="card-text mt-2"> <%= booking.planet.description %></p>
+            </div>
+            <div class="col">
+              <p class="btn btn-dark position-absolute bottom-0 end-0"><%= link_to "Delete", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-white fs-5"%></p>
+            </div>
           </div>
         </div>
       </div>
