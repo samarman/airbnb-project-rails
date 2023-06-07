@@ -33,7 +33,7 @@
             <p>Total Price: £<%= next_booking.total_price %></p>
           </div>
           <div>
-            <%= link_to "x", bookings_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link position-absolute bottom-0 end-0 me-2 text-dark"%>
+            <%= link_to "x", booking_path(next_booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link position-absolute bottom-0 end-0 me-2 text-dark"%>
           </div>
         </div>
       </div>
