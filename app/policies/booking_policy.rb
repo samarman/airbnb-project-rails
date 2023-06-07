@@ -18,4 +18,7 @@ class BookingPolicy < ApplicationPolicy
     return true
   end
 
- end
+  def delete?
+    return record.user == user
+  end
+end
