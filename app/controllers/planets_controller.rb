@@ -1,5 +1,5 @@
 class PlanetsController < ApplicationController
-  before_action :set_planet, only: %i[show]
+  before_action :set_planet, only: [:show, :edit, :update]
   def index
     @planets = policy_scope(Planet)
     # @planets = Planet.all
@@ -26,6 +26,16 @@ class PlanetsController < ApplicationController
     end
   end
 
+  def edit
+    authorize(@planet)
+  end
+
+  def update
+    authorize(@planet)
+    @planet.update(planet_params)
+    redirect_to planet_path(@planet)
+  end
+
   private
 
   def planet_params
@@ -33,6 +43,6 @@ class PlanetsController < ApplicationController
   end
 
   def set_planet
-    @planet = Planet.find(params[:id]) if params[:id].present?
+    @planet = Planet.find(params[:id])
   end
 end

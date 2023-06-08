@@ -1,0 +1,22 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80)">
+  <div class="container d-flex justify-content-center">
+    <h1 class="font-monospace text-light">Edit Planet</h1>
+  </div>
+</div>
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="m-3">
+        <div class="row bg-light mt-3 p-3 position-relative">
+          <h1>New Planet Form</h1>
+        </div>
+        <div class="row bg-light mt-3 p-3">
+          <%= render 'form', planet: @planet %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planet", planet_path, class: "text-white fs-5"%></p>
+  </div>
+</div>

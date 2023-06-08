@@ -17,4 +17,12 @@ class PlanetPolicy < ApplicationPolicy
   def create?
     return true
   end
+
+  def edit?
+    return true
+  end
+
+  def update?
+    return edit?
+  end
 end
