@@ -19,10 +19,14 @@ class PlanetPolicy < ApplicationPolicy
   end
 
   def edit?
-    return true
+    record.user == user
   end
 
   def update?
     return edit?
+  end
+
+  def destroy?
+    record.user == user
   end
 end
