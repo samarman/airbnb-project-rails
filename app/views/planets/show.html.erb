@@ -21,8 +21,10 @@
                               <% end %>>
           </div>
           <div class="d-inline-flex">
-            <h6><%= link_to "Edit planet", edit_planet_path(@planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
-            <h6><%= link_to "Delete planet", planet_path(@planet), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark text-light mt-2 p-2 ms-3"%></h6>
+            <% if policy(@planet).edit? %>
+              <h6><%= link_to "Edit planet", edit_planet_path(@planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
+              <h6><%= link_to "Delete planet", planet_path(@planet), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark text-light mt-2 p-2 ms-3"%></h6>
+            <% end %>
           </div>
         </div>
       </div>
