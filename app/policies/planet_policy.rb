@@ -17,4 +17,16 @@ class PlanetPolicy < ApplicationPolicy
   def create?
     return true
   end
+
+  def edit?
+    record.user == user
+  end
+
+  def update?
+    return edit?
+  end
+
+  def destroy?
+    record.user == user
+  end
 end

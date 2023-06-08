@@ -20,6 +20,12 @@
                                 <%= cl_image_path @planet.photo.key %>
                               <% end %>>
           </div>
+          <div class="d-inline-flex">
+            <% if policy(@planet).edit? %>
+              <h6><%= link_to "Edit planet", edit_planet_path(@planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
+              <h6><%= link_to "Delete planet", planet_path(@planet), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark text-light mt-2 p-2 ms-3"%></h6>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="col-4">
@@ -30,14 +36,14 @@
       <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
         <%= f.input :start_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow %>
         <%= f.input :end_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow + 1 %>
-        <%= f.submit "Book Now", class: "btn btn-dark" %>
+        <%= f.submit "Book Now", class: "ms-1 btn btn-dark" %>
       <% end %>
 
           </div>
           <div class="p-3">
-            <h2>Details:</h2>
-            <h3 class="fs-6"><%= @planet.number_of_guests %> People</h3>
-            <h3 class="fs-6">£<%= @planet.price_per_night %> per night</h3>
+            <h4 class="ms-1">Details:</h4>
+            <h5 class="ms-1"><i class="fa-solid fa-people-line"></i>  <%= @planet.number_of_guests %></h5>
+            <h5 class="ms-1"><i class="fa-sharp fa-solid fa-sterling-sign"></i> <%= @planet.price_per_night %> per night</h5>
           </div>
         </div>
       </div>
