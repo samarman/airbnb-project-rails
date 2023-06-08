@@ -36,6 +36,16 @@ class PlanetsController < ApplicationController
     redirect_to planet_path(@planet)
   end
 
+  def destroy
+    @planet = Planet.find(params[:id])
+    authorize @planet
+    if @planet.destroy
+      redirect_to planets_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def planet_params
