@@ -2,7 +2,15 @@ class PlanetsController < ApplicationController
   before_action :set_planet, only: [:show, :edit, :update]
   def index
     @planets = policy_scope(Planet)
-    # @planets = Planet.all
+    @planets = Planet.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        planets.name ILIKE :query
+        OR planets.address ILIKE :query
+        OR planets.description ILIKE :query
+      SQL
+      @planets = @planets.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
