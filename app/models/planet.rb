@@ -1,6 +1,7 @@
 class Planet < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
+  has_many :reviews, dependant: :destroy
   validates :name, :description, :price_per_night, presence: true
   validates :name, uniqueness: true
   has_one_attached :photo
