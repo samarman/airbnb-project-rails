@@ -59,12 +59,20 @@
     </div >
     <div class="container justify-content-center col-8 mt-5 bg-light">
       <div>
-        <% if @planet.reviews.blank? %>
-          <h3>Be the first to leave a review!</h3>
-        <% else %>
-          <%# <% @planet.reviews.each do |review| %>
-            <%# <p><%= review.rating - <%= review.content %></p>
-        <% end %>
+          <% @planet.reviews.each do |review| %>
+            <div>
+              <div class="row">
+                <div class="card-product d-inline-flex">
+                  <div class="col">
+                    <%= review.rating %>
+                  </div>
+                  <div class="col">
+                    <%= review.content %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
       </div>
     </div>
     <div>
