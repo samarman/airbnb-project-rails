@@ -16,6 +16,7 @@ class PlanetsController < ApplicationController
   def show
     authorize(@planet)
     @booking = Booking.new
+    @review = Review.new
   end
 
   def new

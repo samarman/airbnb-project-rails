@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :planets do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:create, :show]
   end
   resources :bookings, only: [:index, :destroy]
 end

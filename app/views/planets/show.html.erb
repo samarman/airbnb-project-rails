@@ -33,12 +33,11 @@
           <div class="p-3">
             <h2>Book This Planet!</h2>
             <span>Date from</span>
-      <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
-        <%= f.input :start_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow %>
-        <%= f.input :end_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow + 1 %>
-        <%= f.submit "Book Now", class: "ms-1 btn btn-dark" %>
-      <% end %>
-
+              <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
+              <%= f.input :start_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow %>
+              <%= f.input :end_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow + 1 %>
+              <%= f.submit "Book Now", class: "ms-1 btn btn-dark" %>
+              <% end %>
           </div>
           <div class="p-3">
             <h4 class="ms-1">Details:</h4>
@@ -46,8 +45,36 @@
             <h5 class="ms-1"><i class="fa-sharp fa-solid fa-sterling-sign"></i> <%= @planet.price_per_night %> per night</h5>
           </div>
         </div>
+        <div class="bg-light m-3 mt-5">
+        <div class="p-3">
+          <h2>Post your review here!</h2>
+          <%= simple_form_for [@planet, @review], html: {data: {form_target: "form"}} do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :content %>
+          <%= f.submit "Submit review", class: "ms-1 btn btn-dark" %>
+          <% end %>
+        </div>
+      </div>
       </div>
     </div >
+    <div class="container justify-content-center col-8 mt-5 bg-light">
+      <div>
+          <% @planet.reviews.each do |review| %>
+            <div>
+              <div class="row">
+                <div class="card-product d-inline-flex">
+                  <div class="col">
+                    <%= review.rating %>
+                  </div>
+                  <div class="col">
+                    <%= review.content %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
     <div>
       <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
     </div>
