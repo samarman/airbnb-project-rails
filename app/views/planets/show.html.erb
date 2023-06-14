@@ -72,22 +72,22 @@
 
     </div>
     </div>
-    <div class="container justify-content-center col-8 mt-5 bg-light">
+    <div class="container justify-content-center col-8 mt-5">
   <div class="reviews-section">
     <% @planet.reviews.each do |review| %>
-      <div class="review-card">
+      <div class="review-card bg-light p-3 mb-4">
         <div class="row">
           <div class="col">
             <div class="rating">
               <% if review.rating %>
-                <% checked_stars = review.rating.to_i %>
+                <% checked_stars = review.rating %>
                 <% unchecked_stars = 5 - checked_stars %>
                 <% checked_stars.times do %>
                   <i class="fas fa-star checked"></i>
                 <% end %>
-                <% unchecked_stars.times do %>
-                  <i class="fas fa-star"></i>
-                <% end %>
+                <%# <% unchecked_stars.times do %>
+                  <%# <i class="fas fa-star"></i> %>
+                <%# <% end %>
               <% else %>
                 <% 5.times do %>
                   <i class="fas fa-star"></i>
