@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="bg-light m-3">
+        <div class="bg-light m-3 card">
           <div class="p-3">
             <h2>Book This Planet!</h2>
             <span>Date from</span>
@@ -46,41 +46,89 @@
           </div>
         </div>
         <div class="bg-light m-3 mt-5">
-        <div class="p-3">
-          <h2>Post your review here!</h2>
-          <%= simple_form_for [@planet, @review], html: {data: {form_target: "form"}} do |f| %>
-          <%= f.input :rating %>
+          <div class="card p-3">
+            <h2>Post your review here!</h2>
+            <%= simple_form_for [@planet, @review], html: {data: {form_target: "form"}} do |f| %>
+          <div class="form-group">
+            <%= f.label :rating %>
+            <div class="star-rating">
+              <%= f.input :rating, as: :hidden %>
+              <% (1..5).each do |i| %>
+                <label for="star<%= i %>" class="star">
+                  <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>" class="rating-star" <%= 'checked' if @review.rating.to_i == i %>>
+                  <i class="fas fa-star"></i>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        <div class="form-group">
           <%= f.input :content %>
-          <%= f.submit "Submit review", class: "ms-1 btn btn-dark" %>
-          <% end %>
         </div>
+        <%= f.submit "Submit review", class: "ms-1 btn btn-dark" %>
+        <% end %>
       </div>
       </div>
-    </div >
-    <div class="container justify-content-center mt-5">
-      <div class="row">
-        <div class="col-8">
-          <div class="header mb-4">
-            <h2>Latest reviews</h2>
-          </div>
-          <% @planet.reviews.each do |review| %>
-            <div class="card mb-4 border-bottom border-dark border-opacity-50 rounded-4">
-              <h5 class="card-header"><%= review.rating %> Stars</h5>
-              <div class="card-body">
-                <p class="card-text"><%= review.content %></p>
-                <span><em>by : <%= review.user.first_name %></em></span>
-              </div>
+      </div>
+
+    </div>
+    </div>
+    <div class="container justify-content-center col-8 mt-5 bg-light">
+  <div class="reviews-section">
+    <% @planet.reviews.each do |review| %>
+      <div class="review-card">
+        <div class="row">
+          <div class="col">
+            <div class="rating">
+              <% if review.rating %>
+                <% checked_stars = review.rating.to_i %>
+                <% unchecked_stars = 5 - checked_stars %>
+                <% checked_stars.times do %>
+                  <i class="fas fa-star checked"></i>
+                <% end %>
+                <% unchecked_stars.times do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+              <% else %>
+                <% 5.times do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <div class="col-4">
-          <div class="header mb-4">
-            <div class="ps-2 mt-5">
-              <img src="https://images.unsplash.com/photo-1530508777238-14544088c3ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="map of space" width="400" height="800" class="ps-2">
+          </div>
+          <div class="col">
+            <div class="content">
+              <%= review.rating.to_i %> stars -
+              <%= review.content %>
+<!--     </div > -->
+<!--     <div class="container justify-content-center mt-5"> -->
+<!--       <div class="row"> -->
+<!--         <div class="col-8"> -->
+<!--           <div class="header mb-4"> -->
+<!--             <h2>Latest reviews</h2> -->
+<!--           </div> -->
+<!--           <% @planet.reviews.each do |review| %> -->
+<!--             <div class="card mb-4 border-bottom border-dark border-opacity-50 rounded-4"> -->
+<!--               <h5 class="card-header"><%= review.rating %> Stars</h5> -->
+<!--               <div class="card-body"> -->
+<!--                 <p class="card-text"><%= review.content %></p> -->
+<!--                 <span><em>by : <%= review.user.first_name %></em></span> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           <% end %> -->
+<!--         </div> -->
+<!--         <div class="col-4"> -->
+<!--           <div class="header mb-4"> -->
+<!--             <div class="ps-2 mt-5"> -->
+<!--               <img src="https://images.unsplash.com/photo-1530508777238-14544088c3ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="map of space" width="400" height="800" class="ps-2"> -->
+
             </div>
           </div>
         </div>
       </div>
+    <% end %>
+  </div>
+</div>
+</div>
     </div>
     <div>
       <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
