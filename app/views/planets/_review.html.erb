@@ -1,0 +1,10 @@
+<% checked_stars = review.rating %>
+<div class="card mb-4 border-bottom border-dark border-opacity-50 rounded-4">
+  <h5 class="card-header"><% checked_stars.times do %>
+          <i class="fas fa-star checked"></i>
+        <% end %></h5>
+  <div class="card-body">
+    <p class="card-text"><%= review.content %></p>
+    <span><em>by : <%= review.user.first_name %></em></span>
+  </div>
+</div>
