@@ -1,0 +1,10 @@
+<%= simple_form_for [planet, review], html: {data: {insert_in_list_target: "form", action: "submit->insert-in-list#send"}} do |f| %>
+  <div class="form-group text-dark">
+    <%# <%= f.label :rating %>
+    <%= f.collection_radio_buttons :rating, [[1, "★"], [2, "★"], [3, "★"], [4, "★"], [5, "★"]], :first, :last, class: "p-5 text-dark" %>
+  </div>
+  <div class="form-group">
+    <%= f.input :content %>
+  </div>
+  <%= f.submit "Submit review", class: "ms-1 btn btn-dark" %>
+<% end %>

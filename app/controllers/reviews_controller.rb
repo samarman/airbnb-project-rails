@@ -5,10 +5,14 @@ class ReviewsController < ApplicationController
     @review.planet = @planet
     @review.user = current_user
     authorize @review
-    if @review.save
-      redirect_to planet_path(@planet)
-    else
-      render planet_path(@planet), status: :unprocessable_entity
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to planet_path(@planet) }
+        format.json
+      else
+        format.html { render planet_path(@planet), status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 
