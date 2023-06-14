@@ -3,85 +3,89 @@
     <h1 class="text-light"><%= @planet.name %></h1>
   </div>
 </div>
-<div class="container margin-top-negative">
-    <div class="row">
-      <div class="col-8">
-        <div class="m-3">
-          <div class="row bg-light mt-3 p-3 position-relative">
-            <h1><%= @planet.name %></h1>
-            <h4>Address: <%= @planet.address %></h4>
-          </div>
-          <div class="row bg-light mt-5 p-3">
-            <h2>A little bit more about this planet:</h2>
-            <h5 class="mt-3"><%= @planet.description %></h5>
-            <img id="map" class="mt-5" src=<% if @planet.photo.key.nil? %>
-                                <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
-                              <% else %>
-                                <%= cl_image_path @planet.photo.key %>
-                              <% end %>>
-          </div>
-          <div class="d-inline-flex">
-            <% if policy(@planet).edit? %>
-              <h6><%= link_to "Edit planet", edit_planet_path(@planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
-              <h6><%= link_to "Delete planet", planet_path(@planet), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark text-light mt-2 p-2 ms-3"%></h6>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="bg-light m-3 card">
-          <div class="p-3">
-            <h2>Book This Planet!</h2>
-            <span>Date from</span>
-              <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
-              <%= f.input :start_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow %>
-              <%= f.input :end_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow + 1 %>
-              <%= f.submit "Book Now", class: "ms-1 btn btn-dark" %>
+<div class="container" data-controller="insert-in-list">
+  <div class="container margin-top-negative">
+      <div class="row">
+        <div class="col-8">
+          <div class="m-3">
+            <div class="row bg-light mt-3 p-3 position-relative">
+              <h1><%= @planet.name %></h1>
+              <h4>Address: <%= @planet.address %></h4>
+            </div>
+            <div class="row bg-light mt-5 p-3">
+              <h2>A little bit more about this planet:</h2>
+              <h5 class="mt-3"><%= @planet.description %></h5>
+              <img id="map" class="mt-5" src=<% if @planet.photo.key.nil? %>
+                                  <%= "https://images.unsplash.com/photo-1579128860537-64fcd61568bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3056&q=80" %>
+                                <% else %>
+                                  <%= cl_image_path @planet.photo.key %>
+                                <% end %>>
+            </div>
+            <div class="d-inline-flex">
+              <% if policy(@planet).edit? %>
+                <h6><%= link_to "Edit planet", edit_planet_path(@planet), class: "btn btn-dark text-light mt-2 p-2" %></h6>
+                <h6><%= link_to "Delete planet", planet_path(@planet), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark text-light mt-2 p-2 ms-3"%></h6>
               <% end %>
-          </div>
-          <div class="p-3">
-            <h4 class="ms-1">Details:</h4>
-            <h5 class="ms-1"><i class="fa-solid fa-people-line"></i>  <%= @planet.number_of_guests %></h5>
-            <h5 class="ms-1"><i class="fa-sharp fa-solid fa-sterling-sign"></i> <%= @planet.price_per_night %> per night</h5>
+            </div>
           </div>
         </div>
-        <div class="bg-light m-3 mt-2">
-          <div class="card p-3">
-            <h2>Post your review here!</h2>
-            <%= render 'reviews/form', planet: @planet, review: @review %>
+        <div class="col-4">
+          <div class="bg-light m-3 card">
+            <div class="p-3">
+              <h2>Book This Planet!</h2>
+              <span>Date from</span>
+                <%= simple_form_for [@planet, @booking], html: {data: {form_target: "form"}} do |f| %>
+                <%= f.input :start_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow %>
+                <%= f.input :end_date, start_year: Date.current.year, end_year: Date.current.year + 2, default: Date.current.tomorrow + 1 %>
+                <%= f.submit "Book Now", class: "ms-1 btn btn-dark" %>
+                <% end %>
+            </div>
+            <div class="p-3">
+              <h4 class="ms-1">Details:</h4>
+              <h5 class="ms-1"><i class="fa-solid fa-people-line"></i>  <%= @planet.number_of_guests %></h5>
+              <h5 class="ms-1"><i class="fa-sharp fa-solid fa-sterling-sign"></i> <%= @planet.price_per_night %> per night</h5>
+            </div>
           </div>
-        </div>
-  </div>
-</div>
-</div>
-<div class="container justify-content-center mt-5">
-<div class="row">
-  <div class="col-8">
-    <div class="header mb-4">
-      <h2>Latest reviews</h2>
-    </div>
-    <% @planet.reviews.each do |review| %>
-      <% checked_stars = review.rating %>
-      <div class="card mb-4 border-bottom border-dark border-opacity-50 rounded-4">
-        <h5 class="card-header"><% checked_stars.times do %>
-                <i class="fas fa-star checked"></i>
-              <% end %></h5>
-        <div class="card-body">
-          <p class="card-text"><%= review.content %></p>
-          <span><em>by : <%= review.user.first_name %></em></span>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-4">
-    <div class="header mb-4">
-      <div class="ps-2 mt-5">
-        <img src="https://images.unsplash.com/photo-1530508777238-14544088c3ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="map of space" width="400" height="800" class="ps-2">
-      </div>
+          <div class="bg-light m-3 mt-2">
+            <div class="card p-3">
+              <h2>Post your review here!</h2>
+              <%= render 'reviews/form', planet: @planet, review: @review %>
+            </div>
+          </div>
     </div>
   </div>
-  <div>
-      <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
   </div>
-</div>
+  <div class="container justify-content-center mt-5">
+  <div class="row">
+    <div class="col-8">
+      <div class="header mb-4">
+        <h2>Latest reviews</h2>
+      </div>
+      <div data-insert-in-list-target="items">
+        <% @planet.reviews.each do |review| %>
+          <% checked_stars = review.rating %>
+          <div class="card mb-4 border-bottom border-dark border-opacity-50 rounded-4">
+            <h5 class="card-header"><% checked_stars.times do %>
+                    <i class="fas fa-star checked"></i>
+                  <% end %></h5>
+            <div class="card-body">
+              <p class="card-text"><%= review.content %></p>
+              <span><em>by : <%= review.user.first_name %></em></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="header mb-4">
+        <div class="ps-2 mt-5">
+          <img src="https://images.unsplash.com/photo-1530508777238-14544088c3ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="map of space" width="400" height="800" class="ps-2">
+        </div>
+      </div>
+    </div>
+    <div>
+        <p class="btn btn-dark mt-5 rounded-pill"><%= link_to "Back to planets", planets_path, class: "text-white fs-5"%></p>
+    </div>
+  </div>
+  </div>
 </div>
